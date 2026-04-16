@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Music2, Shuffle, Shield, Zap, CheckCircle2 } from "lucide-react";
+import { FaSpotify, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -145,14 +146,16 @@ export default function LandingPage() {
 
             <div className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row">
               {[
-                { name: "Spotify", color: "bg-[#1DB954]", desc: "Migração via OAuth 2.0 oficial" },
-                { name: "YouTube Music", color: "bg-[#FF0000]", desc: "Migração via Google API v3" },
-              ].map(({ name, color, desc }) => (
+                { name: "Spotify", color: "bg-[#1DB954]", desc: "Migração via OAuth 2.0 oficial", Icon: FaSpotify },
+                { name: "YouTube Music", color: "bg-[#FF0000]", desc: "Migração via Google API v3", Icon: FaYoutube },
+              ].map(({ name, color, desc, Icon }) => (
                 <div
                   key={name}
                   className="flex w-full max-w-xs flex-col items-center gap-3 rounded-2xl border border-border bg-background p-8 shadow-sm"
                 >
-                  <div className={`h-12 w-12 rounded-xl ${color}`} />
+                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${color}`}>
+                    <Icon className="h-7 w-7 text-white" />
+                  </div>
                   <h3 className="font-semibold">{name}</h3>
                   <p className="text-xs text-muted-foreground">{desc}</p>
                   <div className="flex items-center gap-1.5 text-xs text-primary">

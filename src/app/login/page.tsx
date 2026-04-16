@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Music2, ArrowRight, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { FaSpotify, FaYoutube } from "react-icons/fa";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { getAuthUrl } from "@/lib/api";
@@ -13,17 +13,19 @@ const platforms = [
     id: "spotify" as Platform,
     name: "Spotify",
     description: "Conecte com sua conta Spotify",
-    color: "bg-[#1DB954]",
+    bg: "bg-[#1DB954]",
     textColor: "text-[#1DB954]",
     borderColor: "border-[#1DB954]/30 hover:border-[#1DB954]",
+    Icon: FaSpotify,
   },
   {
     id: "youtube_music" as Platform,
     name: "YouTube Music",
     description: "Conecte com sua conta Google",
-    color: "bg-[#FF0000]",
+    bg: "bg-[#FF0000]",
     textColor: "text-[#FF0000]",
     borderColor: "border-[#FF0000]/30 hover:border-[#FF0000]",
+    Icon: FaYoutube,
   },
 ];
 
@@ -59,25 +61,25 @@ export default function LoginPage() {
 
           {/* Plataformas */}
           <div className="flex flex-col gap-4">
-            {platforms.map((platform) => (
+            {platforms.map(({ id, name, description, bg, textColor, borderColor, Icon }) => (
               <button
-                key={platform.id}
-                onClick={() => handleLogin(platform.id)}
+                key={id}
+                onClick={() => handleLogin(id)}
                 disabled={loading !== null}
-                className={`group flex w-full items-center gap-4 rounded-2xl border-2 bg-card p-5 text-left transition-all ${platform.borderColor} disabled:opacity-50 disabled:cursor-not-allowed`}
+                className={`group flex w-full items-center gap-4 rounded-2xl border-2 bg-card p-5 text-left transition-all ${borderColor} disabled:opacity-50 disabled:cursor-not-allowed`}
               >
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${platform.color}`}>
-                  {loading === platform.id ? (
+                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${bg}`}>
+                  {loading === id ? (
                     <Loader2 className="h-5 w-5 animate-spin text-white" />
                   ) : (
-                    <Music2 className="h-5 w-5 text-white" />
+                    <Icon className="h-6 w-6 text-white" />
                   )}
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-foreground">{platform.name}</div>
-                  <div className="text-xs text-muted-foreground">{platform.description}</div>
+                  <div className="font-semibold text-foreground">{name}</div>
+                  <div className="text-xs text-muted-foreground">{description}</div>
                 </div>
-                <ArrowRight className={`h-4 w-4 transition-transform group-hover:translate-x-1 ${platform.textColor}`} />
+                <ArrowRight className={`h-4 w-4 transition-transform group-hover:translate-x-1 ${textColor}`} />
               </button>
             ))}
           </div>
