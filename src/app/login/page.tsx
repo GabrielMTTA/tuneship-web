@@ -85,7 +85,7 @@ export default function LoginPage() {
           </div>
 
           <p className="mt-8 text-center text-xs text-muted-foreground">
-            Ao continuar, você autoriza o Tuneship a criar playlists em seu nome.
+            Ao continuar, você autoriza o TuneShip a criar playlists em seu nome.
             <br />
             Seus dados nunca são armazenados.
           </p>

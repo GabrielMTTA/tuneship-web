@@ -114,7 +114,7 @@ export default function LandingPage() {
         {/* ── Features ── */}
         <section className="mx-auto max-w-6xl px-6 py-24">
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight">Por que Tuneship?</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Por que TuneShip?</h2>
             <p className="mt-3 text-muted-foreground">
               Construído com tecnologia sólida para garantir que nenhuma música se perca.
             </p>

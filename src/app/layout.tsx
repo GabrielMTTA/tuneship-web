@@ -13,12 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tuneship — Suas playlists, sem fronteiras.",
+  title: "TuneShip — Suas playlists, sem fronteiras.",
   description:
     "Migre suas playlists favoritas entre Spotify e YouTube Music em segundos. Simples, rápido e seguro.",
   keywords: ["playlist", "migração", "spotify", "youtube music", "música"],
   openGraph: {
-    title: "Tuneship",
+    title: "TuneShip",
     description: "Suas playlists, sem fronteiras.",
     type: "website",
   },

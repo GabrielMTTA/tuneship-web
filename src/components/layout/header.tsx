@@ -17,7 +17,7 @@ export function Header() {
           <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary">
             <Music2 className="h-4 w-4 text-primary-foreground" />
           </div>
-          <span className="text-lg tracking-tight">Tuneship</span>
+          <span className="text-lg tracking-tight">TuneShip</span>
         </Link>
 
         {/* Nav */}

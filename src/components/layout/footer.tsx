@@ -9,11 +9,11 @@ export function Footer() {
           <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-primary">
             <Music2 className="h-3 w-3 text-primary-foreground" />
           </div>
-          <span className="font-medium text-foreground">Tuneship</span>
+          <span className="font-medium text-foreground">TuneShip</span>
           <span>— Suas playlists, sem fronteiras.</span>
         </Link>
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Tuneship. Todos os direitos reservados.
+          © {new Date().getFullYear()} TuneShip. Todos os direitos reservados.
         </p>
       </div>
     </footer>
