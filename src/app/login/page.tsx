@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Music2, ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
+import { TuneShipLogo } from "@/components/ui/tuneship-logo";
 import { FaSpotify, FaYoutube } from "react-icons/fa";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -51,7 +52,7 @@ export default function LoginPage() {
           {/* Logo */}
           <div className="mb-10 text-center">
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary shadow-sm tuneship-glow">
-              <Music2 className="h-7 w-7 text-primary-foreground" />
+              <TuneShipLogo className="h-8 w-8 text-primary-foreground" />
             </div>
             <h1 className="text-2xl font-bold tracking-tight">Escolha a plataforma</h1>
             <p className="mt-2 text-sm text-muted-foreground">

@@ -55,20 +55,20 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.13 0 0);
 
-  /* Primary — verde menta suave */
-  --primary: oklch(0.82 0.1 162);        /* #6EE7B7 */
-  --primary-foreground: oklch(0.13 0 0);
+  /* Primary — azul médio */
+  --primary: oklch(0.55 0.2 262);        /* #3381f5 */
+  --primary-foreground: oklch(1 0 0);    /* branco */
 
-  /* Secondary — lavanda clara */
-  --secondary: oklch(0.88 0.06 270);     /* #A5B4FC */
+  /* Secondary — azul claro */
+  --secondary: oklch(0.75 0.13 258);     /* #80b3ff */
   --secondary-foreground: oklch(0.13 0 0);
 
   /* Muted */
   --muted: oklch(0.96 0 0);
   --muted-foreground: oklch(0.5 0 0);    /* #6B7280 cinza médio */
 
-  /* Accent — verde menta suave */
-  --accent: oklch(0.95 0.04 162);
+  /* Accent — azul muito claro (backgrounds) */
+  --accent: oklch(0.95 0.04 258);
   --accent-foreground: oklch(0.13 0 0);
 
   /* Destructive */
@@ -77,7 +77,7 @@
   /* Borders & Inputs */
   --border: oklch(0.92 0 0);             /* #E5E7EB cinza claro */
   --input: oklch(0.92 0 0);
-  --ring: oklch(0.82 0.1 162);           /* match primary */
+  --ring: oklch(0.55 0.2 262);           /* match primary */
 
   /* Radius */
   --radius: 0.75rem;
@@ -85,12 +85,12 @@
   /* Sidebar */
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(0.13 0 0);
-  --sidebar-primary: oklch(0.82 0.1 162);
-  --sidebar-primary-foreground: oklch(0.13 0 0);
-  --sidebar-accent: oklch(0.95 0.04 162);
+  --sidebar-primary: oklch(0.55 0.2 262);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.95 0.04 258);
   --sidebar-accent-foreground: oklch(0.13 0 0);
   --sidebar-border: oklch(0.92 0 0);
-  --sidebar-ring: oklch(0.82 0.1 162);
+  --sidebar-ring: oklch(0.55 0.2 262);
 }
 
 @layer base {
@@ -111,9 +111,9 @@
 /* ── Utility classes ── */
 @layer utilities {
   .tuneship-gradient {
-    background: linear-gradient(135deg, oklch(0.82 0.1 162 / 0.15), oklch(0.88 0.06 270 / 0.15));
+    background: linear-gradient(135deg, oklch(0.55 0.2 262 / 0.12), oklch(0.75 0.13 258 / 0.12));
   }
   .tuneship-glow {
-    box-shadow: 0 0 40px oklch(0.82 0.1 162 / 0.15);
+    box-shadow: 0 0 40px oklch(0.55 0.2 262 / 0.18);
   }
 }

@@ -3,9 +3,10 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
-  Upload, Music2, CheckCircle2, XCircle, AlertCircle,
-  Loader2, ExternalLink, LogOut, FolderOpen
+  Upload, CheckCircle2, XCircle, AlertCircle,
+  Loader2, ExternalLink, LogOut, FolderOpen, PenLine
 } from "lucide-react";
+import { TuneShipLogo } from "@/components/ui/tuneship-logo";
 import { FaSpotify, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/auth-store";
@@ -38,6 +39,7 @@ export default function DashboardPage() {
 
   const [step, setStep] = useState<Step>("upload");
   const [file, setFile] = useState<File | null>(null);
+  const [manualInput, setManualInput] = useState("");
   const [playlistName, setPlaylistName] = useState("");
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -59,6 +61,7 @@ export default function DashboardPage() {
       return;
     }
     setFile(f);
+    setManualInput("");
     setError(null);
     setPlaylistName((prev) => prev || f.name.replace(".txt", ""));
   }, []);
@@ -83,15 +86,25 @@ export default function DashboardPage() {
     ? sessionStorage.getItem("tuneship_access_token") ?? accessToken ?? ""
     : accessToken ?? "";
 
+  // Determina se há conteúdo suficiente para enviar
+  const hasContent = !!file || manualInput.trim().length > 0;
+
   // ── Submit ──
   async function handleSubmit() {
-    if (!file || !playlistName.trim() || !token) return;
+    if (!hasContent || !playlistName.trim() || !token) return;
 
     setIsLoading(true);
     setError(null);
 
     try {
-      const { task_id } = await uploadPlaylist(token, platform!, file, playlistName.trim());
+      // Se não há arquivo mas há texto manual, cria um File a partir do texto
+      const fileToSend = file ?? new File(
+        [manualInput.trim()],
+        `${playlistName.trim()}.txt`,
+        { type: "text/plain" }
+      );
+
+      const { task_id } = await uploadPlaylist(token, platform!, fileToSend, playlistName.trim());
       setStep("processing");
 
       const poll = async () => {
@@ -119,6 +132,7 @@ export default function DashboardPage() {
   function handleReset() {
     setStep("upload");
     setFile(null);
+    setManualInput("");
     setPlaylistName("");
     setTaskResult(null);
     setError(null);
@@ -133,18 +147,16 @@ export default function DashboardPage() {
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
           <div className="flex items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary">
-              <Music2 className="h-4 w-4 text-primary-foreground" />
+              <TuneShipLogo className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="font-semibold">TuneShip</span>
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Platform badge */}
             <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium ${config.lightBg} ${config.color}`}>
               <config.Icon className="h-3.5 w-3.5" />
               {config.name}
             </div>
-
             <Button variant="ghost" size="sm" onClick={handleLogout} className="gap-2">
               <LogOut className="h-4 w-4" />
               Sair
@@ -161,7 +173,7 @@ export default function DashboardPage() {
             <div>
               <h1 className="text-2xl font-bold tracking-tight">Nova migração</h1>
               <p className="mt-1 text-sm text-muted-foreground">
-                Envie seu arquivo .txt e crie sua playlist no {config.name}.
+                Envie seu arquivo .txt ou cole as músicas manualmente.
               </p>
             </div>
 
@@ -171,7 +183,7 @@ export default function DashboardPage() {
               onDragOver={handleDragOver}
               onDragLeave={() => setIsDragging(false)}
               onClick={() => fileInputRef.current?.click()}
-              className={`relative flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed p-12 transition-all ${
+              className={`relative flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed p-10 transition-all ${
                 isDragging
                   ? "border-primary bg-accent"
                   : file
@@ -214,6 +226,34 @@ export default function DashboardPage() {
               )}
             </div>
 
+            {/* Divisor */}
+            <div className="flex items-center gap-3">
+              <div className="h-px flex-1 bg-border" />
+              <span className="text-xs font-medium text-muted-foreground">ou digite manualmente</span>
+              <div className="h-px flex-1 bg-border" />
+            </div>
+
+            {/* Manual input */}
+            <div className="flex flex-col gap-2">
+              <label className="flex items-center gap-1.5 text-sm font-medium text-foreground">
+                <PenLine className="h-3.5 w-3.5 text-muted-foreground" />
+                Músicas
+              </label>
+              <textarea
+                value={manualInput}
+                onChange={(e) => {
+                  setManualInput(e.target.value);
+                  if (e.target.value.trim()) setFile(null);
+                }}
+                placeholder={"Artista - Nome da música\nArtista - Nome da música\nArtista - Nome da música"}
+                rows={6}
+                className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none leading-relaxed"
+              />
+              <p className="text-xs text-muted-foreground">
+                Uma música por linha no formato <span className="font-medium text-foreground">Artista - Música</span>
+              </p>
+            </div>
+
             {/* Playlist name */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-foreground">
@@ -240,7 +280,7 @@ export default function DashboardPage() {
             <Button
               size="lg"
               className="w-full rounded-xl"
-              disabled={!file || !playlistName.trim() || isLoading}
+              disabled={!hasContent || !playlistName.trim() || isLoading}
               onClick={handleSubmit}
             >
               {isLoading ? (

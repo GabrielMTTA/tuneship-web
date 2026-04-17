@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Music2, Shuffle, Shield, Zap, CheckCircle2 } from "lucide-react";
+import { TuneShipLogo } from "@/components/ui/tuneship-logo";
 import { FaSpotify, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/layout/header";
@@ -50,7 +51,7 @@ export default function LandingPage() {
             Spotify &amp; YouTube Music
           </div>
 
-          <h1 className="mt-6 text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl [text-shadow:0_2px_16px_rgba(0,0,0,0.20)]">
             Suas playlists,
             <br />
             <span className="text-primary">sem fronteiras.</span>
@@ -102,7 +103,7 @@ export default function LandingPage() {
                   key={step}
                   className="relative flex flex-col gap-4 rounded-2xl border border-border bg-background p-8 shadow-sm"
                 >
-                  <span className="text-5xl font-bold text-primary/20">{step}</span>
+                  <span className="text-5xl font-bold text-primary/50">{step}</span>
                   <h3 className="text-lg font-semibold">{title}</h3>
                   <p className="text-sm text-muted-foreground">{description}</p>
                 </div>
@@ -171,7 +172,7 @@ export default function LandingPage() {
         {/* ── CTA Final ── */}
         <section className="mx-auto max-w-6xl px-6 py-24 text-center">
           <div className="rounded-3xl border border-border bg-card p-16 shadow-sm tuneship-glow">
-            <Music2 className="mx-auto h-12 w-12 text-primary" />
+            <TuneShipLogo className="mx-auto h-12 w-12 text-primary" />
             <h2 className="mt-6 text-4xl font-bold tracking-tight">
               Pronto para migrar suas playlists?
             </h2>

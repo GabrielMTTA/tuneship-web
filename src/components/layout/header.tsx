@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Music2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TuneShipLogo } from "@/components/ui/tuneship-logo";
 import { useAuthStore } from "@/store/auth-store";
 
 export function Header() {
@@ -15,7 +15,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
           <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary">
-            <Music2 className="h-4 w-4 text-primary-foreground" />
+            <TuneShipLogo className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="text-lg tracking-tight">TuneShip</span>
         </Link>
