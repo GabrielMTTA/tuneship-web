@@ -128,15 +128,18 @@ export default function LandingPage() {
         {/* ── Stats ── */}
         <section className="border-y border-border bg-card">
           <div className="mx-auto max-w-6xl px-6 py-8 sm:py-10">
-            <div className="grid grid-cols-1 gap-6 text-center sm:grid-cols-3 sm:gap-8">
+            <div className="grid grid-cols-3 gap-4 text-center sm:gap-8">
               {[
                 { value: "100%", label: "Taxa de sucesso nos testes" },
                 { value: "2", label: "Plataformas suportadas" },
                 { value: "<2s", label: "Tempo médio por música" },
-              ].map(({ value, label }) => (
-                <div key={label} className="flex items-center justify-center gap-4 sm:flex-col sm:gap-0">
-                  <div className="text-3xl font-bold text-foreground sm:text-3xl">{value}</div>
-                  <div className="text-sm text-muted-foreground sm:mt-1">{label}</div>
+              ].map(({ value, label }, idx, arr) => (
+                <div key={label} className="flex flex-col items-center gap-1 relative">
+                  {idx < arr.length - 1 && (
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 h-8 w-px bg-border" />
+                  )}
+                  <div className="text-2xl font-bold text-foreground sm:text-3xl">{value}</div>
+                  <div className="text-xs text-muted-foreground sm:text-sm leading-tight">{label}</div>
                 </div>
               ))}
             </div>
@@ -200,14 +203,21 @@ export default function LandingPage() {
                   </div>
                 ),
               },
-            ].map(({ n, title, desc, preview }) => (
-              <div key={n} className="rounded-2xl border border-border bg-card p-5 shadow-sm">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-white">{n}</span>
-                  <span className="font-semibold">{title}</span>
+            ].map(({ n, title, desc, preview }, idx, arr) => (
+              <div key={n} className="flex flex-col items-stretch">
+                <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <div className="mb-3 flex items-center gap-2">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-white">{n}</span>
+                    <span className="font-semibold">{title}</span>
+                  </div>
+                  {preview}
+                  <p className="mt-3 text-xs text-muted-foreground">{desc}</p>
                 </div>
-                {preview}
-                <p className="mt-3 text-xs text-muted-foreground">{desc}</p>
+                {idx < arr.length - 1 && (
+                  <div className="flex w-full items-center justify-center py-3">
+                    <ArrowRight className="h-5 w-5 rotate-90 text-primary/40" />
+                  </div>
+                )}
               </div>
             ))}
           </div>
