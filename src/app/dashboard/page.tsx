@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   Upload, Music2, CheckCircle2, XCircle, AlertCircle,
@@ -44,41 +44,44 @@ export default function DashboardPage() {
   const [error, setError] = useState<string | null>(null);
   const [taskResult, setTaskResult] = useState<TaskStatus | null>(null);
 
-  // Redirect if not authenticated
-  if (!isAuthenticated() || !platform) {
-    router.replace("/login");
-    return null;
-  }
+  // ── Auth guard ──
+  const authenticated = isAuthenticated();
+  useEffect(() => {
+    if (!authenticated || !platform) {
+      router.replace("/login");
+    }
+  }, [authenticated, platform, router]);
 
-  const config = PLATFORM_CONFIG[platform];
-  const token = typeof window !== "undefined"
-    ? sessionStorage.getItem("tuneship_access_token") ?? accessToken ?? ""
-    : accessToken ?? "";
-
-  // ── File handling ──
-  const handleFile = (f: File) => {
+  // ── File handling (hooks MUST be before any early return) ──
+  const handleFile = useCallback((f: File) => {
     if (!f.name.endsWith(".txt")) {
       setError("Por favor, envie um arquivo .txt");
       return;
     }
     setFile(f);
     setError(null);
-    if (!playlistName) {
-      setPlaylistName(f.name.replace(".txt", ""));
-    }
-  };
+    setPlaylistName((prev) => prev || f.name.replace(".txt", ""));
+  }, []);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
     const f = e.dataTransfer.files[0];
     if (f) handleFile(f);
-  }, []);
+  }, [handleFile]);
 
-  const handleDragOver = (e: React.DragEvent) => {
+  const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(true);
-  };
+  }, []);
+
+  // ── Early return AFTER all hooks ──
+  if (!authenticated || !platform) return null;
+
+  const config = PLATFORM_CONFIG[platform];
+  const token = typeof window !== "undefined"
+    ? sessionStorage.getItem("tuneship_access_token") ?? accessToken ?? ""
+    : accessToken ?? "";
 
   // ── Submit ──
   async function handleSubmit() {
@@ -91,7 +94,6 @@ export default function DashboardPage() {
       const { task_id } = await uploadPlaylist(token, platform!, file, playlistName.trim());
       setStep("processing");
 
-      // Poll for result
       const poll = async () => {
         const status = await getTaskStatus(task_id);
         if (status.status === "completed" || status.status === "failed") {
@@ -112,7 +114,6 @@ export default function DashboardPage() {
   function handleLogout() {
     clearAuth();
     sessionStorage.removeItem("tuneship_access_token");
-    router.replace("/login");
   }
 
   function handleReset() {
