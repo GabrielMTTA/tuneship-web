@@ -54,6 +54,20 @@ export default function DashboardPage() {
     }
   }, [authenticated, platform, router]);
 
+  // ── Pre-fill demo data from landing page ──
+  useEffect(() => {
+    const demoSongs = sessionStorage.getItem("tuneship_demo_songs");
+    const demoPlaylist = sessionStorage.getItem("tuneship_demo_playlist");
+    if (demoSongs) {
+      setManualInput(demoSongs);
+      sessionStorage.removeItem("tuneship_demo_songs");
+    }
+    if (demoPlaylist) {
+      setPlaylistName(demoPlaylist);
+      sessionStorage.removeItem("tuneship_demo_playlist");
+    }
+  }, []);
+
   // ── File handling (hooks MUST be before any early return) ──
   const handleFile = useCallback((f: File) => {
     if (!f.name.endsWith(".txt")) {
