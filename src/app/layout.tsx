@@ -22,12 +22,9 @@ export const metadata: Metadata = {
     description: "Suas playlists, sem fronteiras.",
     type: "website",
   },
-  // Google Search Console verification — set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION in Vercel env vars
-  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
-    verification: {
-      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-    },
-  }),
+  verification: {
+    google: "TQXmuyab64FEMvXg6eRocf7V9D4TBvMg2_3bnh_hYto",
+  },
 };
 
 export default function RootLayout({
