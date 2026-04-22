@@ -181,23 +181,16 @@ export default function LandingPage() {
                     ))}
                   </div>
 
-                  {/* YouTube Music — acesso imediato */}
+                  {/* Já está na lista */}
                   <div className="mt-8 rounded-2xl border border-border bg-card p-5">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FF0000] shrink-0">
-                        <FaYoutube className="h-5 w-5 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-foreground">YouTube Music</p>
-                        <p className="text-xs text-muted-foreground">Disponível agora, sem lista de espera</p>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
-                      Quer criar playlists no YouTube Music? Não precisa esperar — o acesso é imediato.
+                    <p className="text-sm font-semibold text-foreground mb-1">Já está na lista?</p>
+                    <p className="text-xs text-muted-foreground mb-4">
+                      Se você já recebeu a confirmação de acesso, pode entrar agora.
                     </p>
-                    <Button size="sm" className="w-full rounded-xl gap-2 bg-[#FF0000] hover:bg-[#cc0000] text-white" asChild>
+                    <Button size="sm" variant="outline" className="w-full rounded-xl gap-2" asChild>
                       <Link href="/login">
-                        Usar com YouTube Music
+                        <FaSpotify className="h-3.5 w-3.5 text-[#1DB954]" />
+                        Já tenho acesso — Entrar
                         <ArrowRight className="h-3.5 w-3.5" />
                       </Link>
                     </Button>
