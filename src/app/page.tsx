@@ -182,15 +182,15 @@ export default function LandingPage() {
                   </div>
 
                   {/* Já está na lista */}
-                  <div className="mt-8 rounded-2xl border border-border bg-card p-5">
-                    <p className="text-sm font-semibold text-foreground mb-1">Já está na lista?</p>
-                    <p className="text-xs text-muted-foreground mb-4">
-                      Se você já recebeu a confirmação de acesso, pode entrar agora.
-                    </p>
-                    <Button size="sm" variant="outline" className="w-full rounded-xl gap-2" asChild>
+                  <div className="mt-8 pt-6 border-t border-border flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Já está na lista?</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">Acesso confirmado? Entre agora.</p>
+                    </div>
+                    <Button size="sm" variant="outline" className="rounded-xl gap-1.5 shrink-0" asChild>
                       <Link href="/login">
                         <FaSpotify className="h-3.5 w-3.5 text-[#1DB954]" />
-                        Já tenho acesso — Entrar
+                        Entrar
                         <ArrowRight className="h-3.5 w-3.5" />
                       </Link>
                     </Button>
