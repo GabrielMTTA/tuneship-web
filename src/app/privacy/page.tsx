@@ -94,11 +94,23 @@ Esses dados são automaticamente apagados ao fechar o navegador. Não utilizamos
     content: `O TuneShip não é direcionado a menores de 13 anos. Não coletamos intencionalmente informações de crianças. Se você acredita que uma criança utilizou o serviço, entre em contato conosco para que possamos tomar as medidas cabíveis.`,
   },
   {
-    title: "10. Alterações nesta Política",
+    title: "10. Lista de Espera",
+    content: `Para usuários que desejam acesso antecipado ao TuneShip, oferecemos um formulário de lista de espera. Nesse formulário coletamos:
+
+• Nome
+• E-mail de contato: para notificá-lo quando sua vaga for liberada
+• E-mail cadastrado no Spotify: necessário para liberar o acesso manualmente durante o período de revisão do Spotify
+
+Esses dados são armazenados de forma segura em nossa infraestrutura e utilizados exclusivamente para gerenciar o processo de liberação de acesso. Não são compartilhados com terceiros.
+
+Para solicitar a remoção dos seus dados da lista de espera, entre em contato através do e-mail contato@tuneship.app com o assunto "Remover da lista de espera".`,
+  },
+  {
+    title: "11. Alterações nesta Política",
     content: `Podemos atualizar esta Política de Privacidade periodicamente. Quando isso ocorrer, a data de "Última atualização" no topo desta página será revisada. Recomendamos que você revise esta página ocasionalmente.`,
   },
   {
-    title: "11. Contato",
+    title: "12. Contato",
     content: `Para dúvidas, solicitações ou preocupações relacionadas a esta Política de Privacidade, entre em contato:
 
 E-mail: contato@tuneship.app

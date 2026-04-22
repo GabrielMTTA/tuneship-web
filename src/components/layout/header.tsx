@@ -37,7 +37,7 @@ export function Header() {
             </>
           ) : (
             <Button size="sm" asChild className="rounded-xl">
-              <Link href="/login">Começar agora</Link>
+              <a href="/#lista-de-espera">Entrar na lista</a>
             </Button>
           )}
         </nav>

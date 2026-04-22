@@ -7,6 +7,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { DemoWidget } from "@/components/landing/demo-widget";
 import { FlowSteps } from "@/components/landing/flow-steps";
+import { WaitlistForm } from "@/components/landing/waitlist-form";
 
 const features = [
   {
@@ -142,6 +143,51 @@ export default function LandingPage() {
                   <div className="text-xs text-muted-foreground sm:text-sm leading-tight">{label}</div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Waitlist ── */}
+        <section id="lista-de-espera" className="border-t border-border bg-card">
+          <div className="mx-auto max-w-6xl px-6 py-14 sm:py-24">
+            <div className="rounded-3xl border border-border bg-background p-8 sm:p-16 shadow-sm tuneship-glow">
+              <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+
+                {/* Esquerda — texto */}
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary mb-5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                    Acesso antecipado
+                  </div>
+                  <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                    Entre para o grupo de acesso antecipado
+                  </h2>
+                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed sm:text-base">
+                    O TuneShip está passando pelo processo de revisão oficial do Spotify para liberar o app ao público. Enquanto isso, o acesso está disponível para um grupo pequeno de usuários — e você pode fazer parte dele.
+                  </p>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                    Você receberá um e-mail assim que sua vaga for liberada.
+                  </p>
+                  <div className="mt-6 flex flex-col gap-2">
+                    {[
+                      "Acesso completo a todas as funcionalidades",
+                      "Migração Spotify ↔ YouTube Music",
+                      "Sem custos, sem anúncios",
+                    ].map((item) => (
+                      <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Direita — formulário */}
+                <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                  <WaitlistForm />
+                </div>
+
+              </div>
             </div>
           </div>
         </section>
@@ -282,10 +328,10 @@ export default function LandingPage() {
                 Gratuito, rápido e sem cadastro. Só autorize sua conta e envie o arquivo.
               </p>
               <Button size="lg" className="mt-8 sm:mt-10 rounded-xl gap-2 px-8 sm:px-10" asChild>
-                <Link href="/login">
-                  Começar agora
+                <a href="#lista-de-espera">
+                  Entrar na lista de espera
                   <ArrowRight className="h-4 w-4" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

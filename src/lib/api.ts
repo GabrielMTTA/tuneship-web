@@ -74,3 +74,15 @@ export async function getTaskReport(
 ): Promise<{ report: string }> {
   return request(`/api/v1/playlists/tasks/${taskId}/report/text`);
 }
+
+// ── Waitlist ──
+export async function joinWaitlist(data: {
+  name: string;
+  contact_email: string;
+  spotify_email: string;
+}): Promise<{ message: string }> {
+  return request("/api/v1/waitlist", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+}
