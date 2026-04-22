@@ -163,7 +163,7 @@ export default function LandingPage() {
                     Entre para o grupo de acesso antecipado
                   </h2>
                   <p className="mt-4 text-sm text-muted-foreground leading-relaxed sm:text-base">
-                    O TuneShip está passando pelo processo de revisão oficial do Spotify para liberar o app ao público. Enquanto isso, o acesso está disponível para um grupo pequeno de usuários — e você pode fazer parte dele.
+                    O TuneShip está passando pelo processo de revisão oficial do Spotify para liberar o app ao público. Enquanto isso, o acesso via Spotify está disponível para um grupo pequeno de usuários — e você pode fazer parte dele.
                   </p>
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                     Você receberá um e-mail assim que sua vaga for liberada.
@@ -179,6 +179,28 @@ export default function LandingPage() {
                         {item}
                       </div>
                     ))}
+                  </div>
+
+                  {/* YouTube Music — acesso imediato */}
+                  <div className="mt-8 rounded-2xl border border-border bg-card p-5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FF0000] shrink-0">
+                        <FaYoutube className="h-5 w-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-foreground">YouTube Music</p>
+                        <p className="text-xs text-muted-foreground">Disponível agora, sem lista de espera</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
+                      Quer criar playlists no YouTube Music? Não precisa esperar — o acesso é imediato.
+                    </p>
+                    <Button size="sm" className="w-full rounded-xl gap-2 bg-[#FF0000] hover:bg-[#cc0000] text-white" asChild>
+                      <Link href="/login">
+                        Usar com YouTube Music
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </Button>
                   </div>
                 </div>
 
