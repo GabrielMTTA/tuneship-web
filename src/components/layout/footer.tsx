@@ -14,7 +14,11 @@ export function Footer() {
         </Link>
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <Link href="/privacy" className="hover:text-foreground transition-colors">
-            Política de Privacidade
+            Privacidade
+          </Link>
+          <span>·</span>
+          <Link href="/terms" className="hover:text-foreground transition-colors">
+            Termos
           </Link>
           <span>·</span>
           <span>© {new Date().getFullYear()} TuneShip. Todos os direitos reservados.</span>
