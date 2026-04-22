@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TuneShipLogo } from "@/components/ui/tuneship-logo";
 import { useAuthStore } from "@/store/auth-store";
+import { FaSpotify, FaYoutube } from "react-icons/fa";
 
 export function Header() {
   const { isAuthenticated, clearAuth } = useAuthStore();
@@ -36,9 +37,20 @@ export function Header() {
               </Button>
             </>
           ) : (
-            <Button size="sm" asChild className="rounded-xl">
-              <a href="/#lista-de-espera">Entrar na lista</a>
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button size="sm" asChild className="rounded-xl gap-1.5 bg-[#FF0000] hover:bg-[#cc0000] text-white">
+                <Link href="/login">
+                  <FaYoutube className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">YouTube Music</span>
+                </Link>
+              </Button>
+              <Button size="sm" asChild className="rounded-xl gap-1.5 bg-[#1DB954] hover:bg-[#17a349] text-white">
+                <a href="/#lista-de-espera">
+                  <FaSpotify className="h-3.5 w-3.5" />
+                  Entrar na lista
+                </a>
+              </Button>
+            </div>
           )}
         </nav>
       </div>
