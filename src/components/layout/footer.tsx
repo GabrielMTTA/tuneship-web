@@ -12,9 +12,13 @@ export function Footer() {
           <span className="font-medium text-foreground">TuneShip</span>
           <span>— Suas playlists, sem fronteiras.</span>
         </Link>
-        <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} TuneShip. Todos os direitos reservados.
-        </p>
+        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+          <Link href="/privacy" className="hover:text-foreground transition-colors">
+            Política de Privacidade
+          </Link>
+          <span>·</span>
+          <span>© {new Date().getFullYear()} TuneShip. Todos os direitos reservados.</span>
+        </div>
       </div>
     </footer>
   );
